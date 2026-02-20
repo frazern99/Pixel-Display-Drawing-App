@@ -1,0 +1,82 @@
+﻿<Window x:Class="PixelDisplayWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PixelDisplayWPF"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="900" Width="1800">
+    <Grid Name ="main">
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Menu Name ="mainMenu">
+            <MenuItem Name ="Paint" Header="Paint" IsEnabled="False" Click="MenuItem_Click"/>
+            <MenuItem Name ="Erase" Header="Erase"  Click="Erase_Click"/>
+            <MenuItem Name ="Fill" Header="Fill" Click="MenuItem_Click_1"/>
+            <MenuItem Name ="EyeD" Header="Eye Dropper" Click="MenuItem_Click_2"/>
+        </Menu>
+
+
+        <Slider Name="colorSlider" Value="0" Minimum ="0" Maximum="359" Grid.Column="1" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5" ValueChanged="colorSlider_ValueChanged" Height="18">
+            <Slider.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#ff0000" Offset="0.0" />
+                    <GradientStop Color="#ff00ff" Offset="0.83" />
+                    <GradientStop Color="#0000ff" Offset="0.66" />
+                    <GradientStop Color="#00ffff" Offset="0.49" />
+                    <GradientStop Color="#00ff00" Offset="0.33" />
+                    <GradientStop Color="#ffff00" Offset="0.16" />
+                    <GradientStop Color="#ff0000" Offset="1" />
+                </LinearGradientBrush>
+            </Slider.Background>
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
+        <TextBlock Name="textblock1" Grid.Column="1" HorizontalAlignment="Left" Margin="128,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ja-jp" Text="0"/></TextBlock>
+        <Rectangle Name="selectedColor"  Grid.Column="1" HorizontalAlignment="Left" Height="38" Margin="181,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="44">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                </LinearGradientBrush>
+
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Image Name="ColorGradient" Source= "" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="47,294,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock Name ="TestText"  Grid.Column="1" HorizontalAlignment="Left" Margin="82,276,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="18" Width="78"/>
+        <Grid/>
+        <Canvas >
+            <Canvas MouseMove="mainCanvas_MouseMove" MouseLeftButtonUp="mainCanvas_MouseLeftButtonUp" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" Name="mainCanvas" Height="800" Width="1496" HorizontalAlignment="Left" Canvas.Top="-147" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Canvas.Left="-256">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+            </Canvas>
+        </Canvas>
+        <Canvas Name="ColorCanvas" DragOver="ColorCanvas_DragOver" AllowDrop="True" Background="Transparent" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="47,294,0,0" VerticalAlignment="Top" Width="100">
+            <Ellipse Name ="ColorCursor"  Height="20" Width="20" StrokeThickness="4" Stroke="Gray" MouseMove ="ColorCursor_MouseMove"/>
+        </Canvas>
+        <Button Name ="DoneButton"  Grid.Column="1" Content="Done" HorizontalAlignment="Center" Margin="0,558,0,0" VerticalAlignment="Top" Height="52" Width="106" FontSize="20" Click="DoneButton_Click"/>
+        <Button Name ="LoadButton" Content="Load" HorizontalAlignment="Center" Height="52" Margin="0,470,0,0" VerticalAlignment="Top" Width="106" Grid.Column="1" Click="LoadButton_Click"/>
+        <Button Name ="LastFrame" Grid.Column="1" Content="Last Frame" HorizontalAlignment="Left" Margin="57,401,0,0" VerticalAlignment="Top" Height="41" Width="77" RenderTransformOrigin="1.545,-0.462" Click="LastFrame_Click"/>
+        <Button Name ="NextFrame" Grid.Column="1" Content="Next Frame" HorizontalAlignment="Left" Margin="181,401,0,0" VerticalAlignment="Top" Height="41" Width="75" Click="NextFrame_Click"/>
+
+    </Grid>
+</Window>
